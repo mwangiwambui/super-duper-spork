@@ -6,10 +6,12 @@ import Sidebar from "./Sidebar";
 const Layout = (props) => {
   return (
     <div className="App">
+      
       <Header />
       <Sidebar />
       {props.children}
       <Footer />
+      
     </div>
   )
 }

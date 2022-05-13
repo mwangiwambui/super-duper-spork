@@ -5,9 +5,11 @@ function App() {
   return (
     <div className='App'>
     <Layout>
-    <h1 className='text-3xl font-bold underline'>
-      Hello World!
-    </h1>
+      <div className="flex flex-col flex-1">
+        <h1 className='text-3xl font-bold underline'>
+          Hello World!
+        </h1>
+    </div>
     </Layout>
     </div>
   );

@@ -8,8 +8,10 @@ const Layout = (props) => {
     <div className="App">
       
       <Header />
+      <main className="grid grid-cols-1 lg:grid-cols-5 my-12 mx-6 w-2xl container px-2 mx-auto">
       <Sidebar />
       {props.children}
+      </main>
       <Footer />
       
     </div>

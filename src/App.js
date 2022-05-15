@@ -7,14 +7,13 @@ import NotFound from './components/pages/NotFound';
 
 function App() {
   return (
-    <Routes>
-      <Route exact path="/" element={<Layout />}>
-        <Route index element={<CreateJournal />} />
-        <Route exact path="listEntries" element={<ListEntries />} />
+    <Layout>
+      <Routes>
+        <Route exact path="/" element={<CreateJournal />}></Route>
+        <Route exact path="/listEntries" element={<ListEntries />} />
         <Route path="*" element={<NotFound />} />
-      </Route>
-
-    </Routes>
+      </Routes>
+    </Layout>
 
 
   );

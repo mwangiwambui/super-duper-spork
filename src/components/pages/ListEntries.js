@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Entry from "./Entry"
-
+import Entry from "../Entry"
 
 const ListEntries = () => {
-  
+  let entryJson = require('../../journal.json');
+  console.log(entryJson)
   const [entries, setEntry] = useState([]);
 
   useEffect(() => {
-    let entryJson = require('../../journal.json');
+    
     setEntry(entryJson)
   }, [entryJson])
   

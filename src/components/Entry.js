@@ -1,31 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 
 const Entry = () => {
+  const [ entry, setEntry ] = useState([])
+  let entryJson = require('../journal.json');
+  const { id } = useParams();
+
+  const getEntryById = (id) => {  
+    return entryJson.find(item => item.id === id)
+  }
+
+  useEffect(() => {
+    if(id){
+    setEntry(getEntryById(id))
+    }
+  },[]);
+  
   return (
-    <div>
-      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-        <td className="w-4 p-4">
-          <div className="flex items-center">
-            <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-            <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
-          </div>
-        </td>
-        <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-          Apple MacBook Pro 17"
-        </th>
-        <td className="px-6 py-4">
-          Sliver
-        </td>
-        <td className="px-6 py-4">
-          Laptop
-        </td>
-        <td className="px-6 py-4">
-          $2999
-        </td>
-        <td className="px-6 py-4 text-right">
-          <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-        </td>
-      </tr>
+    <div className="container mx-auto">
+      <div className="flex-row py-4 grid-cols-2 place-content-between">
+      <h2 className="font-extrabold w-full text-3xl">{entry.title}</h2>
+      <p className="text-gray-500 mt-3 w-full text-sm">{entry.date}</p>
+      </div>
+      <hr></hr>    
+      <p className="text-justify">{entry.body}</p>
+      
     </div>
   )
 }

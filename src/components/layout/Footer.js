@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="items-center px-2 sm:px-40 py-2.5 justify-center">
+    <div className="items-center px-2 sm:px-40 py-2.5 mb-20 justify-center">
     <footer className="p-4 bg-white sm:p-6 dark:bg-gray-800">
       <div className="sm:flex sm:items-center sm:justify-between">
         <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <NavLink to="/" className="hover:underline">Yomziee</NavLink>. All Rights Reserved.

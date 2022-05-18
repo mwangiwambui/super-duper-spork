@@ -15,6 +15,7 @@ const Entry = () => {
     if(id){
     setEntry(getEntryById(id))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
   
   return (

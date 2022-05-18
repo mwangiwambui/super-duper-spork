@@ -1,45 +1,51 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ListEntries = () => {
-  let entryJson = require('../../journal.json');
-  console.log(entryJson)
+  const [ entryItems, setEntry ] = useState(require('../../journal.json'))
   let navigate = useNavigate();
 
-const openEntries = (key) => {
-  navigate(`/entry/${key}`);
-}
-  // useEffect(() => {
+  const openEntries = (key) => {
+    navigate(`/entry/${key}`);
+  }
 
-  //   setEntry(entryJson)
-  // }, [entryJson])
+  const deleteItem = (id) => {
+    setEntry(entryItems.filter(entryItem => {
+      return entryItem.id != id
+    }));
+  }
+
+  useEffect(() => {
+    displayEntries();
+  }, [entryItems])
 
   function displayEntries() {
     return (
-      entryJson.map((item, index) => {
+      entryItems.map((item, index) => {
         return (
-          
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" onClick={() => openEntries(item.id)}>
+
+          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={index}>
             <td className="w-4 p-4">
               <div className="flex items-center">
                 <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                 <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
               </div>
             </td>
-            <th scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+            <th onClick={() => openEntries(item.id)} scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
               {item.title}
             </th>
-            <td className="px-6 py-4">
+            <td onClick={() => openEntries(item.id)} className="px-6 py-4">
               {item.date}
             </td>
             <td className="px-6 py-4 text-right">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+              <button onClick={() => deleteItem(item.id)}><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
               </svg>
-
+              </button>
               {/* <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> */}
             </td>
           </tr>
-          
+
         )
       })
 

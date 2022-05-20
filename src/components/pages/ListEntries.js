@@ -8,6 +8,7 @@ const ListEntries = () => {
   const openEntries = (key) => {
     navigate(`/entry/${key}`);
   }
+  //spread items to make a copy, will late add server functionality
 
   const deleteItem = (id) => {
     setEntry([...entryItems.filter(entryItem => {

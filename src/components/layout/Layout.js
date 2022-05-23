@@ -8,7 +8,7 @@ const Layout = (props) => {
     <div className="flex flex-col min-h-screen App">    
       <Header />
       <div className="flex-1">
-      <main className="flex space-x-7 grid-cols-3 lg:grid-cols-5 my-12 mx-6 container mx-auto">
+      <main className="flex space-x-7 my-12 mx-6">
       <Sidebar />
       {props.children}
       </main>

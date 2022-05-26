@@ -3,12 +3,15 @@ import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'; 
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { values } from "draft-js/lib/DefaultDraftBlockRenderMap";
 
 const CreateFunctionalJournal = () => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty(),);
-  const  [convertedContent, setConvertedContent] = useState(null);
+  const [convertedContent, setConvertedContent] = useState(null);
+  const [title, setTitle] = useState({});
+
+
   useEffect(() => {
     if (editorState) {
       var html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -17,12 +20,13 @@ const CreateFunctionalJournal = () => {
     }
   });
 
-  // var onEditorStateChange = (newEditorState) => {
-  //   setEditorState(newEditorState)
-  // };
+  const handleChange = event => {
+    setTitle(event.target.value)
+  }
   const onEditorStateChange = (state) => {
     setEditorState(state)
   };
+
   const editorStyle = {
     overflowY: "scroll",
     height: "500px",
@@ -31,9 +35,9 @@ const CreateFunctionalJournal = () => {
 
   return (
     <div className="mx-auto">
-      <div>
-        <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
-        <input type="text" id="small-input" class="block p-2 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+
+      <div class="flex mb-6 justify-center">
+        <input type="text" name="title" value={title} onChange={handleChange} id="large-input" placeholder="Enter Title..." class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
       </div>
 
 
@@ -57,6 +61,7 @@ const CreateFunctionalJournal = () => {
         disabled
         value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
       /> */}
+
     </div >
 
   )

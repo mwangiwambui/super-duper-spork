@@ -16,6 +16,10 @@ const ListEntries = () => {
     })]);
   }
 
+  const truncateText = (text, start, len) => {
+    return text.length > len ? text.slice(start, len) : text;
+  }
+
   useEffect(() => {
     displayEntries();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,7 +38,7 @@ const ListEntries = () => {
               </div>
             </td>
             <th onClick={() => openEntries(item.id)} style={{cursor : 'pointer'}}  scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-              {item.title}
+              {truncateText(item.body, 0, 60)}
             </th>
             <td onClick={() => openEntries(item.id)} style={{cursor : 'pointer'}}  className="px-6 py-4">
               {item.date}

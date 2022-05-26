@@ -4,24 +4,32 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { values } from "draft-js/lib/DefaultDraftBlockRenderMap";
+
 
 const CreateFunctionalJournal = () => {
+  const[journalEntry, setJournalEntry] = useState({
+    title: "" || undefined,
+    body: ""  
+  })
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty(),);
-  const [convertedContent, setConvertedContent] = useState(null);
-  const [title, setTitle] = useState({});
 
 
   useEffect(() => {
-    if (editorState) {
+    // if (editorState) {
       var html = draftToHtml(convertToRaw(editorState.getCurrentContent()));
       console.log(html)
-      setConvertedContent(html)
-    }
-  });
+      setJournalEntry({
+        body: html
+      })
+      
+      // setConvertedContent(html)
+    // }
+  }, [editorState]);
 
   const handleChange = event => {
-    setTitle(event.target.value)
+    setJournalEntry({
+      title : event.target.value
+    })
   }
   const onEditorStateChange = (state) => {
     setEditorState(state)
@@ -37,7 +45,7 @@ const CreateFunctionalJournal = () => {
     <div className="mx-auto">
 
       <div class="flex mb-6 justify-center">
-        <input type="text" name="title" value={title} onChange={handleChange} id="large-input" placeholder="Enter Title..." class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+        <input type="text" name="title" value={journalEntry.title} onChange={handleChange} id="large-input" placeholder="Enter Title..." class="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
       </div>
 
 

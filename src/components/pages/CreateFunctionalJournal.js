@@ -13,7 +13,6 @@ const CreateFunctionalJournal = () => {
   })
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty(),);
 
-
   useEffect(() => {
     // if (editorState) {
       var html = draftToHtml(convertToRaw(editorState.getCurrentContent()));

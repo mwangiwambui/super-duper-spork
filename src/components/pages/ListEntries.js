@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ListEntries = () => {
-  const [ entryItems, setEntry ] = useState(require('../../journal.json'))
+  const [ entryItems, setEntry ] = useState(() => {
+    const values= JSON.parse(localStorage.getItem('entryItems'))
+    return values || require('../../journal.json');
+   } );
+
   let navigate = useNavigate();
 
   const openEntries = (key) => {
@@ -22,8 +26,9 @@ const ListEntries = () => {
 
   useEffect(() => {
     displayEntries();
+    localStorage.setItem('entryItems', JSON.stringify(entryItems));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [entryItems])
+  }, [entryItems]);
 
   function displayEntries() {
     return (

@@ -14,7 +14,7 @@ function App() {
         <Route exact path="/" element={<CreateFunctionalJournal />}></Route>
         <Route exact path="/listEntries" element={<ListEntries />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/entry/:id" element={<Entry/>} />
+        <Route path="/entry" element={<Entry/>} />
       </Routes>
     </Layout>
 

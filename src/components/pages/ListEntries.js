@@ -9,8 +9,8 @@ const ListEntries = () => {
 
   let navigate = useNavigate();
 
-  const openEntries = (key) => {
-    navigate(`/entry/${key}`);
+  const openEntries = (entry) => {
+    navigate('/entry', {state: entry});
   }
   //spread items to make a copy, will late add server functionality
 
@@ -42,10 +42,10 @@ const ListEntries = () => {
                 <label className="sr-only">checkbox</label>
               </div>
             </td>
-            <th onClick={() => openEntries(item.id)} style={{cursor : 'pointer'}}  scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-              {truncateText(item.body, 0, 60)}
+            <th onClick={() => openEntries(item)} style={{cursor : 'pointer'}}  scope="row" className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+              {truncateText(item.title, 0, 60)}
             </th>
-            <td onClick={() => openEntries(item.id)} style={{cursor : 'pointer'}}  className="px-6 py-4">
+            <td onClick={() => openEntries(item)} style={{cursor : 'pointer'}}  className="px-6 py-4">
               {item.date}
             </td>
             <td className="px-6 py-4 text-right">

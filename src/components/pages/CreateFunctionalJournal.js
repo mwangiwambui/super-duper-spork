@@ -3,7 +3,6 @@ import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from 'draftjs-to-html';
 import uuid from 'react-uuid';
-import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
@@ -39,7 +38,6 @@ const CreateFunctionalJournal = () => {
   const addArticle = () => {
     const getExistingEntries = JSON.parse(localStorage.getItem('entryItems'));
     const addItemToExisting = [...getExistingEntries, journalEntry]
-    // console.log(addItemToExisting)
     localStorage.setItem('entryItems', JSON.stringify(addItemToExisting));
   }
 
@@ -75,12 +73,6 @@ const CreateFunctionalJournal = () => {
           Publish
         </span>
       </button>
-      {/* <textarea
-        hidden
-        disabled
-        value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-      /> */}
-
     </div >
 
   )

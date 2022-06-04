@@ -5,12 +5,7 @@ import { useLocation } from "react-router-dom";
 const Entry = () => {
   const [entry, setEntry] = useState([])
   const location = useLocation();
-  // let entryJson = require('../journal.json');
-  // const { id } = useParams();
 
-  // const getEntryById = (id) => {  
-  //   return entryJson.find(item => item.id === id)
-  // }
 
   useEffect(() => {
     setEntry(location.state)

@@ -15,6 +15,7 @@ function App() {
         <Route exact path="/listEntries" element={<ListEntries />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/entry" element={<Entry/>} />
+        <Route path = "/about" element={<About />}></Route>
       </Routes>
     </Layout>
 
